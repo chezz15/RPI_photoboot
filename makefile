@@ -1,8 +1,8 @@
 #------------------------------------------------------------------------------
 
-SOURCE= src/main.c  
+SOURCE= src/main.c src/button_lib.c 
 EXECUTABLE=build/RPI_Photobooth
-INCLUDES=/includes
+INCLUDES=include/
 LIB_PATH=/C/RPI_Photobooth/src/main
 LIBRARY=wiringPi
 CC=arm-linux-gnueabihf-g++.exe
