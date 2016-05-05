@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <wiringPi.h>
-#include <button_lib.h>
+#include "wiringPi.h"
+#include "button_lib.h"
 
 #define SWITCH_PIN 1
 
@@ -17,7 +16,6 @@ int button_init(void (*callback)(void))
 	
 	
   if ( wiringPiISR (SWITCH_PIN, INT_EDGE_FALLING, callback) < 0 ) {
-      //fprintf (stderr, "Unable to setup ISR: %s\n", strerror (errno));
       return 1;
   }	
 }
