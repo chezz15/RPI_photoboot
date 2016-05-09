@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+typedef void function_t(void);
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    void button_pressed_callback();
+     function_t* ptr_fun;
 };
 
 #endif // MAINWINDOW_H
