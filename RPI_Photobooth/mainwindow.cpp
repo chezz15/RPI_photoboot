@@ -24,7 +24,8 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::button_pressed_callback() {
-    //ui->label->setText("Button pressed!");
+void MainWindow::button_pressed_callback()
+{
+    ui->label->setText("Button pressed!");
 }
 
