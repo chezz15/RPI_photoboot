@@ -29,11 +29,11 @@
 // Deprecated
 #define	NUM_PINS	17
 
-#define	WPI_MODE_PINS		 0
-#define	WPI_MODE_GPIO		 1
-#define	WPI_MODE_GPIO_SYS	 2
-#define	WPI_MODE_PHYS		 3
-#define	WPI_MODE_PIFACE		 4
+#define	WPI_MODE_PINS           0
+#define	WPI_MODE_GPIO           1
+#define	WPI_MODE_GPIO_SYS       2
+#define	WPI_MODE_PHYS           3
+#define	WPI_MODE_PIFACE         4
 #define	WPI_MODE_UNINITIALISED	-1
 
 // Pin modes
@@ -43,7 +43,7 @@
 #define	PWM_OUTPUT		 2
 #define	GPIO_CLOCK		 3
 
-#define	LOW			 0
+#define	LOW              0
 #define	HIGH			 1
 
 // Pull up/down/none
@@ -54,8 +54,8 @@
 
 // PWM
 
-#define	PWM_MODE_MS		0
-#define	PWM_MODE_BAL		1
+#define	PWM_MODE_MS      0
+#define	PWM_MODE_BAL	 1
 
 // Interrupt levels
 

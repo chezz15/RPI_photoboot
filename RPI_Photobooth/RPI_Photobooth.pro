@@ -21,7 +21,8 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h\
          button_lib.h\
-         wiringPi.h
+         wiringPi.h \
+    raspicam.h
 
 FORMS    += mainwindow.ui
 
