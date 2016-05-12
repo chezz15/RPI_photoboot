@@ -13,13 +13,15 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    static MainWindow* getInstance();
 
 private:
+    MainWindow(QWidget *parent = 0);
+    static MainWindow* instance;
     Ui::MainWindow *ui;
-    void button_pressed_callback();
-     function_t* ptr_fun;
+    static void button_pressed_callback();
+
 };
 
 #endif // MAINWINDOW_H
