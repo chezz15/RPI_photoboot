@@ -1,5 +1,14 @@
 #ifndef BUTTON_LIB_H
 #define BUTTON_LIB_H
-int lib_init();
+
+/**
+ * @brief lib_init
+ * @return
+ */
+int lib_init(void);
+/**
+ * @brief button_init
+ * @return
+ */
 int button_init(void (*callback)(void));
 #endif

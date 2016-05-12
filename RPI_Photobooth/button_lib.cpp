@@ -5,11 +5,19 @@
 
 #define SWITCH_PIN 1
 
-int lib_init()
+/**
+ * @brief lib_init
+ * @return
+ */
+int lib_init(void)
 {
 	return wiringPiSetup();
 }
 
+/**
+ * @brief button_init
+ * @return
+ */
 int button_init(void (*callback)(void))
 {
   qDebug() << callback;
