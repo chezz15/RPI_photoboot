@@ -50,16 +50,87 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ..\RPI_Photobooth\main.cpp \
 		..\RPI_Photobooth\mainwindow.cpp \
-		..\RPI_Photobooth\button_lib.cpp moc_mainwindow.cpp
+		..\RPI_Photobooth\button_lib.cpp \
+		..\RPI_Photobooth\raspicam.cpp \
+		..\RPI_Photobooth\private\fake_mmal_dependencies.cpp \
+		..\RPI_Photobooth\private\private_impl.cpp \
+		..\RPI_Photobooth\private\threadcondition.cpp \
+		..\RPI_Photobooth\private_still\private_still_impl.cpp \
+		..\RPI_Photobooth\raspicam_still.cpp moc_mainwindow.cpp
 OBJECTS       = main.obj \
 		mainwindow.obj \
 		button_lib.obj \
+		raspicam.obj \
+		fake_mmal_dependencies.obj \
+		private_impl.obj \
+		threadcondition.obj \
+		private_still_impl.obj \
+		raspicam_still.obj \
 		moc_mainwindow.obj
 DIST          =  ..\RPI_Photobooth\mainwindow.h \
 		..\RPI_Photobooth\button_lib.h \
-		..\RPI_Photobooth\wiringPi.h ..\RPI_Photobooth\main.cpp \
+		..\RPI_Photobooth\wiringPi.h \
+		..\RPI_Photobooth\raspicam.h \
+		..\RPI_Photobooth\raspicamtypes.h \
+		..\RPI_Photobooth\build-RPI_Photobooth-RPI_Qt-Debug\ui_mainwindow.h \
+		..\RPI_Photobooth\private\exceptions.h \
+		..\RPI_Photobooth\private\private_impl.h \
+		..\RPI_Photobooth\private\private_types.h \
+		..\RPI_Photobooth\private\threadcondition.h \
+		..\RPI_Photobooth\private_still\private_still_impl.h \
+		..\RPI_Photobooth\raspicam_still.h \
+		..\RPI_Photobooth\scaler.h \
+		..\RPI_Photobooth\mmal\core\mmal_buffer_private.h \
+		..\RPI_Photobooth\mmal\core\mmal_clock_private.h \
+		..\RPI_Photobooth\mmal\core\mmal_component_private.h \
+		..\RPI_Photobooth\mmal\core\mmal_core_private.h \
+		..\RPI_Photobooth\mmal\core\mmal_events_private.h \
+		..\RPI_Photobooth\mmal\core\mmal_port_private.h \
+		..\RPI_Photobooth\mmal\util\mmal_component_wrapper.h \
+		..\RPI_Photobooth\mmal\util\mmal_connection.h \
+		..\RPI_Photobooth\mmal\util\mmal_default_components.h \
+		..\RPI_Photobooth\mmal\util\mmal_graph.h \
+		..\RPI_Photobooth\mmal\util\mmal_il.h \
+		..\RPI_Photobooth\mmal\util\mmal_list.h \
+		..\RPI_Photobooth\mmal\util\mmal_param_convert.h \
+		..\RPI_Photobooth\mmal\util\mmal_util.h \
+		..\RPI_Photobooth\mmal\util\mmal_util_params.h \
+		..\RPI_Photobooth\mmal\util\mmal_util_rational.h \
+		..\RPI_Photobooth\mmal\vc\mmal_vc_api.h \
+		..\RPI_Photobooth\mmal\vc\mmal_vc_api_drm.h \
+		..\RPI_Photobooth\mmal\vc\mmal_vc_client_priv.h \
+		..\RPI_Photobooth\mmal\vc\mmal_vc_msgnames.h \
+		..\RPI_Photobooth\mmal\vc\mmal_vc_msgs.h \
+		..\RPI_Photobooth\mmal\vc\mmal_vc_opaque_alloc.h \
+		..\RPI_Photobooth\mmal\vc\mmal_vc_shm.h \
+		..\RPI_Photobooth\mmal\mmal.h \
+		..\RPI_Photobooth\mmal\mmal_buffer.h \
+		..\RPI_Photobooth\mmal\mmal_clock.h \
+		..\RPI_Photobooth\mmal\mmal_common.h \
+		..\RPI_Photobooth\mmal\mmal_component.h \
+		..\RPI_Photobooth\mmal\mmal_encodings.h \
+		..\RPI_Photobooth\mmal\mmal_events.h \
+		..\RPI_Photobooth\mmal\mmal_format.h \
+		..\RPI_Photobooth\mmal\mmal_logging.h \
+		..\RPI_Photobooth\mmal\mmal_metadata.h \
+		..\RPI_Photobooth\mmal\mmal_parameters.h \
+		..\RPI_Photobooth\mmal\mmal_parameters_audio.h \
+		..\RPI_Photobooth\mmal\mmal_parameters_camera.h \
+		..\RPI_Photobooth\mmal\mmal_parameters_clock.h \
+		..\RPI_Photobooth\mmal\mmal_parameters_common.h \
+		..\RPI_Photobooth\mmal\mmal_parameters_video.h \
+		..\RPI_Photobooth\mmal\mmal_pool.h \
+		..\RPI_Photobooth\mmal\mmal_port.h \
+		..\RPI_Photobooth\mmal\mmal_queue.h \
+		..\RPI_Photobooth\mmal\mmal_types.h ..\RPI_Photobooth\main.cpp \
 		..\RPI_Photobooth\mainwindow.cpp \
-		..\RPI_Photobooth\button_lib.cpp
+		..\RPI_Photobooth\button_lib.cpp \
+		..\RPI_Photobooth\raspicam.cpp \
+		..\RPI_Photobooth\private\fake_mmal_dependencies.cpp \
+		..\RPI_Photobooth\private\private_impl.cpp \
+		..\RPI_Photobooth\private\threadcondition.cpp \
+		..\RPI_Photobooth\private_still\private_still_impl.cpp \
+		..\RPI_Photobooth\raspicam_still.cpp
 QMAKE_TARGET  = RPI_Photobooth
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = RPI_Photobooth
@@ -354,8 +425,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@if not exist $(DISTDIR) mkdir $(DISTDIR) & if not exist $(DISTDIR) exit 1
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)\
-	$(COPY_FILE) --parents ..\RPI_Photobooth\mainwindow.h ..\RPI_Photobooth\button_lib.h ..\RPI_Photobooth\wiringPi.h $(DISTDIR)\
-	$(COPY_FILE) --parents ..\RPI_Photobooth\main.cpp ..\RPI_Photobooth\mainwindow.cpp ..\RPI_Photobooth\button_lib.cpp $(DISTDIR)\
+	$(COPY_FILE) --parents ..\RPI_Photobooth\mainwindow.h ..\RPI_Photobooth\button_lib.h ..\RPI_Photobooth\wiringPi.h ..\RPI_Photobooth\raspicam.h ..\RPI_Photobooth\raspicamtypes.h ..\RPI_Photobooth\build-RPI_Photobooth-RPI_Qt-Debug\ui_mainwindow.h ..\RPI_Photobooth\private\exceptions.h ..\RPI_Photobooth\private\private_impl.h ..\RPI_Photobooth\private\private_types.h ..\RPI_Photobooth\private\threadcondition.h ..\RPI_Photobooth\private_still\private_still_impl.h ..\RPI_Photobooth\raspicam_still.h ..\RPI_Photobooth\scaler.h ..\RPI_Photobooth\mmal\core\mmal_buffer_private.h ..\RPI_Photobooth\mmal\core\mmal_clock_private.h ..\RPI_Photobooth\mmal\core\mmal_component_private.h ..\RPI_Photobooth\mmal\core\mmal_core_private.h ..\RPI_Photobooth\mmal\core\mmal_events_private.h ..\RPI_Photobooth\mmal\core\mmal_port_private.h ..\RPI_Photobooth\mmal\util\mmal_component_wrapper.h ..\RPI_Photobooth\mmal\util\mmal_connection.h ..\RPI_Photobooth\mmal\util\mmal_default_components.h ..\RPI_Photobooth\mmal\util\mmal_graph.h ..\RPI_Photobooth\mmal\util\mmal_il.h ..\RPI_Photobooth\mmal\util\mmal_list.h ..\RPI_Photobooth\mmal\util\mmal_param_convert.h ..\RPI_Photobooth\mmal\util\mmal_util.h ..\RPI_Photobooth\mmal\util\mmal_util_params.h ..\RPI_Photobooth\mmal\util\mmal_util_rational.h ..\RPI_Photobooth\mmal\vc\mmal_vc_api.h ..\RPI_Photobooth\mmal\vc\mmal_vc_api_drm.h ..\RPI_Photobooth\mmal\vc\mmal_vc_client_priv.h ..\RPI_Photobooth\mmal\vc\mmal_vc_msgnames.h ..\RPI_Photobooth\mmal\vc\mmal_vc_msgs.h ..\RPI_Photobooth\mmal\vc\mmal_vc_opaque_alloc.h ..\RPI_Photobooth\mmal\vc\mmal_vc_shm.h ..\RPI_Photobooth\mmal\mmal.h ..\RPI_Photobooth\mmal\mmal_buffer.h ..\RPI_Photobooth\mmal\mmal_clock.h ..\RPI_Photobooth\mmal\mmal_common.h ..\RPI_Photobooth\mmal\mmal_component.h ..\RPI_Photobooth\mmal\mmal_encodings.h ..\RPI_Photobooth\mmal\mmal_events.h ..\RPI_Photobooth\mmal\mmal_format.h ..\RPI_Photobooth\mmal\mmal_logging.h ..\RPI_Photobooth\mmal\mmal_metadata.h ..\RPI_Photobooth\mmal\mmal_parameters.h ..\RPI_Photobooth\mmal\mmal_parameters_audio.h ..\RPI_Photobooth\mmal\mmal_parameters_camera.h ..\RPI_Photobooth\mmal\mmal_parameters_clock.h ..\RPI_Photobooth\mmal\mmal_parameters_common.h ..\RPI_Photobooth\mmal\mmal_parameters_video.h ..\RPI_Photobooth\mmal\mmal_pool.h ..\RPI_Photobooth\mmal\mmal_port.h ..\RPI_Photobooth\mmal\mmal_queue.h ..\RPI_Photobooth\mmal\mmal_types.h $(DISTDIR)\
+	$(COPY_FILE) --parents ..\RPI_Photobooth\main.cpp ..\RPI_Photobooth\mainwindow.cpp ..\RPI_Photobooth\button_lib.cpp ..\RPI_Photobooth\raspicam.cpp ..\RPI_Photobooth\private\fake_mmal_dependencies.cpp ..\RPI_Photobooth\private\private_impl.cpp ..\RPI_Photobooth\private\threadcondition.cpp ..\RPI_Photobooth\private_still\private_still_impl.cpp ..\RPI_Photobooth\raspicam_still.cpp $(DISTDIR)\
 	$(COPY_FILE) --parents ..\RPI_Photobooth\mainwindow.ui $(DISTDIR)\
 
 
@@ -621,7 +692,10 @@ main.obj: ..\RPI_Photobooth\main.cpp ../RPI_Photobooth/mainwindow.h \
 		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qeventloop.h \
 		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtWidgets\qdesktopwidget.h \
 		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtGui\qguiapplication.h \
-		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtGui\qinputmethod.h
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtGui\qinputmethod.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\QDebug \
+		../RPI_Photobooth/raspicam.h \
+		../RPI_Photobooth/raspicamtypes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.obj ..\RPI_Photobooth\main.cpp
 
 mainwindow.obj: ..\RPI_Photobooth\mainwindow.cpp ../RPI_Photobooth/mainwindow.h \
@@ -776,12 +850,483 @@ mainwindow.obj: ..\RPI_Photobooth\mainwindow.cpp ../RPI_Photobooth/mainwindow.h 
 		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtWidgets\qlayoutitem.h \
 		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtWidgets\qgridlayout.h \
 		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtWidgets\QWidget \
-		../RPI_Photobooth/button_lib.h
+		../RPI_Photobooth/button_lib.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.obj ..\RPI_Photobooth\mainwindow.cpp
 
 button_lib.obj: ..\RPI_Photobooth\button_lib.cpp ../RPI_Photobooth/wiringPi.h \
-		../RPI_Photobooth/button_lib.h
+		../RPI_Photobooth/button_lib.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\QDebug \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qdebug.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qalgorithms.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qglobal.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qconfig.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qfeatures.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qsystemdetection.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qprocessordetection.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qcompilerdetection.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qtypeinfo.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qtypetraits.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qsysinfo.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qlogging.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qflags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qatomic.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qbasicatomic.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qatomic_bootstrap.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qgenericatomic.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qatomic_cxx11.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qatomic_gcc.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qatomic_msvc.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qatomic_armv7.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qatomic_armv6.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qatomic_armv5.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qatomic_ia64.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qatomic_mips.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qatomic_x86.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qatomic_unix.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qglobalstatic.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qmutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qnumeric.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qhash.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qchar.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qiterator.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qlist.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qrefcount.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qarraydata.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qbytearraylist.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qbytearray.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qnamespace.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qstring.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qstringbuilder.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qstringlist.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qregexp.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qstringmatcher.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qpair.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qmap.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qtextstream.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qiodevice.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qobject.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qobjectdefs.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qobjectdefs_impl.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qcoreevent.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qscopedpointer.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qmetatype.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qvarlengtharray.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qcontainerfwd.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qisenum.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qobject_impl.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qlocale.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qvariant.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qshareddata.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qvector.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qpoint.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qset.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\usr\local\qt5\include\QtCore\qcontiguouscache.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o button_lib.obj ..\RPI_Photobooth\button_lib.cpp
+
+raspicam.obj: ..\RPI_Photobooth\raspicam.cpp ../RPI_Photobooth/raspicam.h \
+		../RPI_Photobooth/raspicamtypes.h \
+		../RPI_Photobooth/private/private_impl.h \
+		../RPI_Photobooth/mmal/mmal.h \
+		../RPI_Photobooth/mmal/mmal_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_assert.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_types.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_platform_types.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_inttypes.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_attr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\user_nodefs.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_platform.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_futex_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_event_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_blockpool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_mem_from_malloc.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_reentrant_mtx.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_named_sem.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_quickslow_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_init.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_semaphore.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_thread.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mem.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_logging.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_logging_control.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_cmd.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_stdint.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_string.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_event.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_thread_attr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_tls.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_reentrant_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_named_semaphore.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_quickslow_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_event_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_queue.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_legacy_isr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_timer.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mempool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_isr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_atomic_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_once.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_blockpool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_cfg.h \
+		../RPI_Photobooth/mmal/mmal_types.h \
+		../RPI_Photobooth/mmal/mmal_port.h \
+		../RPI_Photobooth/mmal/mmal_format.h \
+		../RPI_Photobooth/mmal/mmal_encodings.h \
+		../RPI_Photobooth/mmal/mmal_buffer.h \
+		../RPI_Photobooth/mmal/mmal_parameters.h \
+		../RPI_Photobooth/mmal/mmal_parameters_camera.h \
+		../RPI_Photobooth/mmal/mmal_parameters_common.h \
+		../RPI_Photobooth/mmal/mmal_parameters_video.h \
+		../RPI_Photobooth/mmal/mmal_parameters_audio.h \
+		../RPI_Photobooth/mmal/mmal_parameters_clock.h \
+		../RPI_Photobooth/mmal/mmal_clock.h \
+		../RPI_Photobooth/mmal/mmal_component.h \
+		../RPI_Photobooth/mmal/mmal_metadata.h \
+		../RPI_Photobooth/mmal/mmal_queue.h \
+		../RPI_Photobooth/mmal/mmal_pool.h \
+		../RPI_Photobooth/mmal/mmal_events.h \
+		../RPI_Photobooth/private/private_types.h \
+		../RPI_Photobooth/private/threadcondition.h \
+		../RPI_Photobooth/private/exceptions.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o raspicam.obj ..\RPI_Photobooth\raspicam.cpp
+
+fake_mmal_dependencies.obj: ..\RPI_Photobooth\private\fake_mmal_dependencies.cpp ../RPI_Photobooth/mmal/util/mmal_default_components.h \
+		../RPI_Photobooth/mmal/util/mmal_util.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_assert.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_types.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_platform_types.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_inttypes.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_attr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\user_nodefs.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_platform.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_futex_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_event_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_blockpool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_mem_from_malloc.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_reentrant_mtx.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_named_sem.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_quickslow_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_init.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_semaphore.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_thread.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mem.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_logging.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_logging_control.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_cmd.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_stdint.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_string.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_event.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_thread_attr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_tls.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_reentrant_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_named_semaphore.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_quickslow_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_event_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_queue.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_legacy_isr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_timer.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mempool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_isr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_atomic_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_once.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_blockpool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_cfg.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_types.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_port.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_format.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_encodings.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_buffer.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_camera.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_video.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_audio.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_clock.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_clock.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_component.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_metadata.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_queue.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_pool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_events.h \
+		../RPI_Photobooth/mmal/util/mmal_util_params.h \
+		../RPI_Photobooth/mmal/mmal.h \
+		../RPI_Photobooth/mmal/mmal_common.h \
+		../RPI_Photobooth/mmal/mmal_types.h \
+		../RPI_Photobooth/mmal/mmal_port.h \
+		../RPI_Photobooth/mmal/mmal_format.h \
+		../RPI_Photobooth/mmal/mmal_encodings.h \
+		../RPI_Photobooth/mmal/mmal_buffer.h \
+		../RPI_Photobooth/mmal/mmal_parameters.h \
+		../RPI_Photobooth/mmal/mmal_parameters_camera.h \
+		../RPI_Photobooth/mmal/mmal_parameters_common.h \
+		../RPI_Photobooth/mmal/mmal_parameters_video.h \
+		../RPI_Photobooth/mmal/mmal_parameters_audio.h \
+		../RPI_Photobooth/mmal/mmal_parameters_clock.h \
+		../RPI_Photobooth/mmal/mmal_clock.h \
+		../RPI_Photobooth/mmal/mmal_component.h \
+		../RPI_Photobooth/mmal/mmal_metadata.h \
+		../RPI_Photobooth/mmal/mmal_queue.h \
+		../RPI_Photobooth/mmal/mmal_pool.h \
+		../RPI_Photobooth/mmal/mmal_events.h \
+		../RPI_Photobooth/mmal/util/mmal_connection.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o fake_mmal_dependencies.obj ..\RPI_Photobooth\private\fake_mmal_dependencies.cpp
+
+private_impl.obj: ..\RPI_Photobooth\private\private_impl.cpp ../RPI_Photobooth/private/private_impl.h \
+		../RPI_Photobooth/mmal/mmal.h \
+		../RPI_Photobooth/mmal/mmal_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_assert.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_types.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_platform_types.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_inttypes.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_attr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\user_nodefs.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_platform.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_futex_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_event_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_blockpool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_mem_from_malloc.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_reentrant_mtx.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_named_sem.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_quickslow_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_init.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_semaphore.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_thread.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mem.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_logging.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_logging_control.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_cmd.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_stdint.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_string.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_event.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_thread_attr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_tls.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_reentrant_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_named_semaphore.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_quickslow_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_event_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_queue.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_legacy_isr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_timer.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mempool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_isr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_atomic_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_once.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_blockpool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_cfg.h \
+		../RPI_Photobooth/mmal/mmal_types.h \
+		../RPI_Photobooth/mmal/mmal_port.h \
+		../RPI_Photobooth/mmal/mmal_format.h \
+		../RPI_Photobooth/mmal/mmal_encodings.h \
+		../RPI_Photobooth/mmal/mmal_buffer.h \
+		../RPI_Photobooth/mmal/mmal_parameters.h \
+		../RPI_Photobooth/mmal/mmal_parameters_camera.h \
+		../RPI_Photobooth/mmal/mmal_parameters_common.h \
+		../RPI_Photobooth/mmal/mmal_parameters_video.h \
+		../RPI_Photobooth/mmal/mmal_parameters_audio.h \
+		../RPI_Photobooth/mmal/mmal_parameters_clock.h \
+		../RPI_Photobooth/mmal/mmal_clock.h \
+		../RPI_Photobooth/mmal/mmal_component.h \
+		../RPI_Photobooth/mmal/mmal_metadata.h \
+		../RPI_Photobooth/mmal/mmal_queue.h \
+		../RPI_Photobooth/mmal/mmal_pool.h \
+		../RPI_Photobooth/mmal/mmal_events.h \
+		../RPI_Photobooth/raspicamtypes.h \
+		../RPI_Photobooth/private/private_types.h \
+		../RPI_Photobooth/private/threadcondition.h \
+		../RPI_Photobooth/private/exceptions.h \
+		../RPI_Photobooth/mmal/util/mmal_util.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_types.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_port.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_format.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_encodings.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_buffer.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_camera.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_video.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_audio.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_clock.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_clock.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_component.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_metadata.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_queue.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_pool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_events.h \
+		../RPI_Photobooth/mmal/util/mmal_util_params.h \
+		../RPI_Photobooth/mmal/util/mmal_default_components.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o private_impl.obj ..\RPI_Photobooth\private\private_impl.cpp
+
+threadcondition.obj: ..\RPI_Photobooth\private\threadcondition.cpp ../RPI_Photobooth/private/threadcondition.h \
+		../RPI_Photobooth/private/exceptions.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o threadcondition.obj ..\RPI_Photobooth\private\threadcondition.cpp
+
+private_still_impl.obj: ..\RPI_Photobooth\private_still\private_still_impl.cpp ../RPI_Photobooth/private_still/private_still_impl.h \
+		../RPI_Photobooth/raspicamtypes.h \
+		../RPI_Photobooth/mmal/mmal.h \
+		../RPI_Photobooth/mmal/mmal_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_assert.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_types.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_platform_types.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_inttypes.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_attr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\user_nodefs.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_platform.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_futex_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_event_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_blockpool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_mem_from_malloc.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_reentrant_mtx.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_named_sem.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_quickslow_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_init.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_semaphore.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_thread.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mem.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_logging.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_logging_control.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_cmd.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_stdint.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_string.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_event.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_thread_attr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_tls.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_reentrant_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_named_semaphore.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_quickslow_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_event_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_queue.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_legacy_isr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_timer.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mempool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_isr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_atomic_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_once.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_blockpool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_cfg.h \
+		../RPI_Photobooth/mmal/mmal_types.h \
+		../RPI_Photobooth/mmal/mmal_port.h \
+		../RPI_Photobooth/mmal/mmal_format.h \
+		../RPI_Photobooth/mmal/mmal_encodings.h \
+		../RPI_Photobooth/mmal/mmal_buffer.h \
+		../RPI_Photobooth/mmal/mmal_parameters.h \
+		../RPI_Photobooth/mmal/mmal_parameters_camera.h \
+		../RPI_Photobooth/mmal/mmal_parameters_common.h \
+		../RPI_Photobooth/mmal/mmal_parameters_video.h \
+		../RPI_Photobooth/mmal/mmal_parameters_audio.h \
+		../RPI_Photobooth/mmal/mmal_parameters_clock.h \
+		../RPI_Photobooth/mmal/mmal_clock.h \
+		../RPI_Photobooth/mmal/mmal_component.h \
+		../RPI_Photobooth/mmal/mmal_metadata.h \
+		../RPI_Photobooth/mmal/mmal_queue.h \
+		../RPI_Photobooth/mmal/mmal_pool.h \
+		../RPI_Photobooth/mmal/mmal_events.h \
+		../RPI_Photobooth/mmal/util/mmal_connection.h \
+		../RPI_Photobooth/mmal/util/mmal_default_components.h \
+		../RPI_Photobooth/mmal/util/mmal_util.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_types.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_port.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_format.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_encodings.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_buffer.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_camera.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_video.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_audio.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_parameters_clock.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_clock.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_component.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_metadata.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_queue.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_pool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\mmal\mmal_events.h \
+		../RPI_Photobooth/mmal/util/mmal_util_params.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o private_still_impl.obj ..\RPI_Photobooth\private_still\private_still_impl.cpp
+
+raspicam_still.obj: ..\RPI_Photobooth\raspicam_still.cpp ../RPI_Photobooth/raspicam_still.h \
+		../RPI_Photobooth/raspicamtypes.h \
+		../RPI_Photobooth/private_still/private_still_impl.h \
+		../RPI_Photobooth/mmal/mmal.h \
+		../RPI_Photobooth/mmal/mmal_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_assert.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_types.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_platform_types.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_inttypes.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_attr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\user_nodefs.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_platform.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\pthreads\vcos_futex_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_event_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_blockpool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_mem_from_malloc.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_reentrant_mtx.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_named_sem.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_generic_quickslow_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\generic\vcos_common.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_init.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_semaphore.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_thread.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mem.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_logging.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_logging_control.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_cmd.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_stdint.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_string.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_event.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_thread_attr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_tls.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_reentrant_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_named_semaphore.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_quickslow_mutex.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_event_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_queue.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_legacy_isr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_timer.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_mempool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_isr.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_atomic_flags.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_once.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_blockpool.h \
+		..\..\SysGCC\Raspberry\arm-linux-gnueabihf\sysroot\opt\vc\include\interface\vcos\vcos_cfg.h \
+		../RPI_Photobooth/mmal/mmal_types.h \
+		../RPI_Photobooth/mmal/mmal_port.h \
+		../RPI_Photobooth/mmal/mmal_format.h \
+		../RPI_Photobooth/mmal/mmal_encodings.h \
+		../RPI_Photobooth/mmal/mmal_buffer.h \
+		../RPI_Photobooth/mmal/mmal_parameters.h \
+		../RPI_Photobooth/mmal/mmal_parameters_camera.h \
+		../RPI_Photobooth/mmal/mmal_parameters_common.h \
+		../RPI_Photobooth/mmal/mmal_parameters_video.h \
+		../RPI_Photobooth/mmal/mmal_parameters_audio.h \
+		../RPI_Photobooth/mmal/mmal_parameters_clock.h \
+		../RPI_Photobooth/mmal/mmal_clock.h \
+		../RPI_Photobooth/mmal/mmal_component.h \
+		../RPI_Photobooth/mmal/mmal_metadata.h \
+		../RPI_Photobooth/mmal/mmal_queue.h \
+		../RPI_Photobooth/mmal/mmal_pool.h \
+		../RPI_Photobooth/mmal/mmal_events.h \
+		../RPI_Photobooth/mmal/util/mmal_connection.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o raspicam_still.obj ..\RPI_Photobooth\raspicam_still.cpp
 
 moc_mainwindow.obj: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.obj moc_mainwindow.cpp

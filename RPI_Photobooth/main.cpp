@@ -35,7 +35,6 @@ int raspicam_test(void)
 }
 
 
-
 int main(int argc, char *argv[])
 {
 
@@ -51,10 +50,10 @@ int main(int argc, char *argv[])
         return -2;
     }
 
-    MainWindow w;
-    w.show();
+    MainWindow::getInstance()->show();
 
 
 
     return a.exec();
 }
+
