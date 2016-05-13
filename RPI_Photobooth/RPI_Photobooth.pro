@@ -18,12 +18,14 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp\
         button_lib.cpp \
+    camerathread.cpp
 
 HEADERS  += mainwindow.h\
          button_lib.h\
          wiringPi.h \
     raspicam.h \
     raspicamtypes.h \
+    camerathread.h
 
 FORMS    += mainwindow.ui
 

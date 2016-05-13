@@ -35,13 +35,6 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    raspicam::RaspiCam Camera;
-    qDebug()  <<"Opening Camera...";
-    if ( !Camera.open()) {
-        qDebug() <<"Error opening camera";
-        return -1;
-    }
-
     if (raspicam_test() < 0){
         qDebug() << "Error during raspicam test";
         return -1;
