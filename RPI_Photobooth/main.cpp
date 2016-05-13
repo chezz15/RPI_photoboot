@@ -11,13 +11,8 @@
 
 int raspicam_test(void)
 {
-    raspicam::RaspiCam Camera; //Cmaera object
+/*     //Cmaera object
     //Open camera
-    qDebug()  <<"Opening Camera...";
-    if ( !Camera.open()) {
-        qDebug() <<"Error opening camera";
-        return -1;
-    }
     //capture
     Camera.grab();
     //allocate memory
@@ -30,7 +25,7 @@ int raspicam_test(void)
     outFile.write ( ( char* ) data, Camera.getImageTypeSize ( raspicam::RASPICAM_FORMAT_RGB ) );
     qDebug()<< "Image saved at raspicam_image.ppm";
     //free resrources
-    delete data;
+    delete data;*/
     return 0;
 }
 
@@ -39,6 +34,13 @@ int main(int argc, char *argv[])
 {
 
     QApplication a(argc, argv);
+
+    raspicam::RaspiCam Camera;
+    qDebug()  <<"Opening Camera...";
+    if ( !Camera.open()) {
+        qDebug() <<"Error opening camera";
+        return -1;
+    }
 
     if (raspicam_test() < 0){
         qDebug() << "Error during raspicam test";
@@ -51,8 +53,6 @@ int main(int argc, char *argv[])
     }
 
     MainWindow::getInstance()->show();
-
-
 
     return a.exec();
 }

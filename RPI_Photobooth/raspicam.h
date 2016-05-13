@@ -173,6 +173,6 @@ namespace raspicam {
         private:
         _private::Private_Impl *_impl;
     };
-};
+}
 #endif
 
