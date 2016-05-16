@@ -3,7 +3,7 @@
 #include <QDebug>
 void CameraThread::run()
 {
-    qDebug() << "thread started";
+    qDebug() << "camera thread started";
 
     MainWindow::getInstance()->getCamera().grab();
     //allocate memory

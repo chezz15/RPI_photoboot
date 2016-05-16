@@ -11,7 +11,6 @@ signals:
     void imageReady(unsigned char* image);
 private:
     void run();
-    QString m_lastTime;
 
 };
 
