@@ -7,11 +7,14 @@
 class GalleryThread : public QThread
 {
     Q_OBJECT
+public:
+    explicit GalleryThread();
+
 signals:
     void showGallery(QString filepath);
     void sendTime(QString time);
 private:
-    //QDirIterator it_gallery;
+    QDirIterator* it_gallery;
     void run();
 
 private slots:
