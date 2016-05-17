@@ -43,6 +43,9 @@ void GalleryThread::timerHit()
 
     qDebug() << "starting gallery..";
 
+
+    qDebug() << "starting gallery..";
+
     filepath = it_gallery->filePath();
     if (it_gallery->hasNext()){
         qDebug() << "next image.." << it_gallery->next();
