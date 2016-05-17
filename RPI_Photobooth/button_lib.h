@@ -11,4 +11,5 @@ int lib_init(void);
  * @return
  */
 int button_init(void (*callback)(void));
+int PIR_init(void (*motion_start_callback)(void),void (*motion_end_callback)(void));
 #endif

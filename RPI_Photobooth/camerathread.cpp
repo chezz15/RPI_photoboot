@@ -1,9 +1,10 @@
 #include "camerathread.h"
 #include "mainwindow.h"
 #include <QDebug>
+
 void CameraThread::run()
 {
-    qDebug() << "thread started";
+    qDebug() << "camera thread started";
 
     //MainWindow::getInstance()->getCamera().grab();
     //allocate memory
@@ -13,7 +14,8 @@ void CameraThread::run()
     unsigned int length = MainWindow::getInstance()->getCamera().getImageBufferSize(); // Header + Image Data + Padding
     unsigned char * image = new unsigned char[length];
     MainWindow::getInstance()->getCamera().grab_retrieve ( image,length );//get camera image
-    qDebug() << "emitting image ready signal";
+    qDebug() << "emitting image ready signal..";
+
     emit imageReady(image) ;
 }
 

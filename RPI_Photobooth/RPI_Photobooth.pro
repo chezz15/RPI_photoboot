@@ -18,7 +18,9 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp\
         button_lib.cpp \
-    camerathread.cpp
+    camerathread.cpp \
+    gallerythread.cpp \
+    settingsdialog.cpp
 
 HEADERS  += mainwindow.h\
          button_lib.h\
@@ -26,9 +28,12 @@ HEADERS  += mainwindow.h\
     raspicam.h \
     raspicamtypes.h \
     camerathread.h \
-    raspicam_still.h
+    raspicam_still.h \
+    settingsdialog.h \
+    gallerythread.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    SettingsDialog.ui
 
 unix:!macx: LIBS += -L$$PWD/../libs/ -lwiringPi
 
