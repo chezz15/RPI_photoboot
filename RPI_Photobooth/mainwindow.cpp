@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     button_init(&button_pressed_callback);
-    PIR_init(&motion_detected_callback);
+    PIR_init(&motion_detected_callback,&end_motion_callback);
 
     qDebug()  <<"Opening Camera...";
     if ( !camera.open()) {
@@ -61,8 +61,20 @@ void MainWindow::button_pressed_callback()
 
 void MainWindow::motion_detected_callback()
 {
+    QImage introPicture;
+
     qDebug() << "motion detected";
+
+    introPicture.load("/home/pi/intro.jpg");
     MainWindow::getInstance()->state = WAIT_FOR_BUTTON_PRESS;
+    instance->ui->introLabel->setPixmap(QPixmap::fromImage(introPicture));
+    MainWindow::getInstance()->showIntro();
+}
+
+void MainWindow::end_motion_callback()
+{
+    qDebug() << "motion ended callback";
+    MainWindow::getInstance()->state = IDLE;
 }
 
 
@@ -73,9 +85,9 @@ void MainWindow::displayImage(unsigned char*)
     qDebug() << "received image ready signal";
 
     lastTakenPicture.load("");
-    instance->ui->label->setPixmap(QPixmap::fromImage(lastTakenPicture));
-    instance->ui->label->show();
-    delay(5);
+    instance->ui->cameraLabel->setPixmap(QPixmap::fromImage(lastTakenPicture));
+    showCamera();
+    delay(5); //TODO To be replace by PIR PIN down event
     state = IDLE;
 }
 
@@ -90,18 +102,18 @@ enum state_t& MainWindow::getState()
     return state;
 }
 
+void MainWindow::setState(enum state_t new_state)
+{
+    state = new_state;
+}
+
 void MainWindow::displayGallery(QString filepath)
 {
     QImage currentPicture;
 
     currentPicture.load(filepath);
-    instance->ui->label->setPixmap(QPixmap::fromImage(currentPicture));
-    instance->ui->label->show();
-}
-
-void MainWindow::updateCameraSettings()
-{
-    camera.setBrightness(50);
+    instance->ui->imageLabel->setPixmap(QPixmap::fromImage(currentPicture));
+    showImageGallery();
 }
 
 void MainWindow::delay(int seconds)
@@ -109,4 +121,20 @@ void MainWindow::delay(int seconds)
     QTime dieTime= QTime::currentTime().addSecs(seconds);
     while (QTime::currentTime() < dieTime)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+}
+
+void MainWindow::showImageGallery()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::showIntro()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+
+}
+
+void MainWindow::showCamera()
+{
+    ui->stackedWidget->setCurrentIndex(2);
 }
