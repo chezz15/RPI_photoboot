@@ -19,7 +19,8 @@ SOURCES += main.cpp\
         mainwindow.cpp\
         button_lib.cpp \
     camerathread.cpp \
-    gallerythread.cpp
+    gallerythread.cpp \
+    settingsdialog.cpp
 
 HEADERS  += mainwindow.h\
          button_lib.h\
@@ -27,9 +28,11 @@ HEADERS  += mainwindow.h\
     raspicam.h \
     raspicamtypes.h \
     camerathread.h \
-    gallerythread.h
+    gallerythread.h \
+    settingsdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    SettingsDialog.ui
 
 unix:!macx: LIBS += -L$$PWD/../libs/ -lwiringPi
 

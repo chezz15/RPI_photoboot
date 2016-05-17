@@ -14,9 +14,10 @@ class MainWindow;
 
 enum state_t: uint8_t
 {
-    IDLE,
+    IDLE = 1,
     WAIT_FOR_BUTTON_PRESS,
-    CAPTURING
+    CAPTURING,
+    RESTART_GALLERY
 };
 
 class MainWindow : public QMainWindow
@@ -28,7 +29,7 @@ public:
     static MainWindow* getInstance();
     raspicam::RaspiCam& getCamera();
     state_t& getState();
-
+    void setState(enum state_t new_state);
 private:
     enum state_t state;
     CameraThread cameraThread;
@@ -40,7 +41,11 @@ private:
     void delay(int seconds);
     static void button_pressed_callback();
     static void motion_detected_callback();
-    void updateCameraSettings();
+    static void end_motion_callback();
+
+    void showImageGallery();
+    void showIntro();
+    void showCamera();
 
 private slots:
     void displayImage(unsigned char*);

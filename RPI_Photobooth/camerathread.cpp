@@ -1,6 +1,7 @@
 #include "camerathread.h"
 #include "mainwindow.h"
 #include <QDebug>
+
 void CameraThread::run()
 {
     qDebug() << "camera thread started";
@@ -11,7 +12,7 @@ void CameraThread::run()
     //extract the image in rgb format
     MainWindow::getInstance()->getCamera().retrieve ( image,raspicam::RASPICAM_FORMAT_RGB );//get camera image
 
-    qDebug() << "emitting image ready signal";
+    qDebug() << "emitting image ready signal..";
     emit imageReady(image) ;
 }
 
