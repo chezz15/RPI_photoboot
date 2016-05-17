@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "camerathread.h"
 #include "raspicam.h"
+#include "raspicam_still.h"
 typedef void function_t(void);
 
 namespace Ui {
@@ -17,14 +18,15 @@ class MainWindow : public QMainWindow
 public:
     ~MainWindow();
     static MainWindow* getInstance();
-    raspicam::RaspiCam& getCamera();
+    raspicam::RaspiCam_Still &getCamera();
 
 private:
     CameraThread cameraThread;
     MainWindow(QWidget *parent = 0);
     static MainWindow* instance;
     Ui::MainWindow *ui;
-    raspicam::RaspiCam camera;
+    //raspicam::RaspiCam camera;
+    raspicam::RaspiCam_Still camera;
     static void button_pressed_callback();
 
 

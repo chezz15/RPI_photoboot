@@ -25,7 +25,8 @@ HEADERS  += mainwindow.h\
          wiringPi.h \
     raspicam.h \
     raspicamtypes.h \
-    camerathread.h
+    camerathread.h \
+    raspicam_still.h
 
 FORMS    += mainwindow.ui
 
