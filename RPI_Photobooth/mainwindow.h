@@ -50,6 +50,9 @@ private:
     void showIntro();
     void showCamera();
 
+protected:
+    void keyPressEvent(QKeyEvent *event);
+
 private slots:
     void displayImage(unsigned char*);
     void displayGallery(QString);

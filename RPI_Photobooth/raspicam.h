@@ -44,7 +44,7 @@ namespace raspicam {
 
     namespace _private{
         class Private_Impl;
-    };
+    }
     /**Base class that do all the hard work
      */
     class RaspiCam

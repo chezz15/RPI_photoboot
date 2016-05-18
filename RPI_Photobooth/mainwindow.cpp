@@ -5,6 +5,7 @@
 #include "gallerythread.h"
 #include "raspicam.h"
 #include "raspicam_still.h"
+#include "settingsdialog.h"
 #include <functional>
 #include <QDebug>
 #include <QThread>
@@ -75,9 +76,6 @@ void MainWindow::displayImage(unsigned char* image)
     QImage lastTakenPicture;
 
     qDebug() << "received image ready signal";
-
-
-	
 	
     //std::ofstream outFile ( "/home/pi/image.ppm",std::ios::binary );
     //outFile << "P6\n  1280 960 255\n";
@@ -162,4 +160,10 @@ void MainWindow::showIntro()
 void MainWindow::showCamera()
 {
     ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::keyPressEvent(QKeyEvent * event)
+{
+    Q_UNUSED(event);
+    SettingsDialog::getInstance()->exec();
 }
