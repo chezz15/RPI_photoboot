@@ -55,6 +55,7 @@ protected:
 
 private slots:
     void displayImage(unsigned char*);
+    void saveImage(unsigned char*);
     void displayGallery(QString);
 };
 

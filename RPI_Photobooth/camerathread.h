@@ -8,6 +8,7 @@ class CameraThread : public QThread
 {
     Q_OBJECT
 signals:
+    void acquiringImage(unsigned char* image);
     void imageReady(unsigned char* image);
 private:
     void run();

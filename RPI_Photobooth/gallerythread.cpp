@@ -46,18 +46,16 @@ void GalleryThread::timerHit()
 
     qDebug() << "starting gallery..";
 
-    filepath = it_gallery->filePath();
     if (it_gallery->hasNext()){
         qDebug() << "next image.." << it_gallery->next();
-        it_gallery->next();
     }
     else{
         delete(it_gallery);
         it_gallery = new QDirIterator("/home/pi/images", QStringList() << "*.bmp", QDir::Files);
-        qDebug() << "created new gallery..";
+        qDebug() << "created new gallery.." << it_gallery->fileName();
+        qDebug() << "next image.." << it_gallery->next();
     }
-
-    qDebug() << "emitting show Gallery signal..";
+    filepath = it_gallery->filePath();
+    qDebug() << "emitting show Gallery signal with filepath.." << filepath;
     emit showGallery(filepath);
-//    }
 }

@@ -12,6 +12,7 @@
 #include <fstream>
 #include <QString>
 #include <QTime>
+#include <QDateTime>
 
 MainWindow* MainWindow::instance = nullptr;
 
@@ -35,8 +36,8 @@ MainWindow::MainWindow(QWidget *parent) :
     if ( !camera.open()) {
         qDebug() <<"Error opening camera";
     }
-
-    QObject::connect(&cameraThread, &CameraThread::imageReady, this, &MainWindow::displayImage, Qt::QueuedConnection);
+    QObject::connect(&cameraThread, &CameraThread::acquiringImage, this, &MainWindow::displayImage, Qt::QueuedConnection);
+    QObject::connect(&cameraThread, &CameraThread::imageReady, this, &MainWindow::saveImage, Qt::QueuedConnection);
     QObject::connect(&galleryThread, &GalleryThread::showGallery, this, &MainWindow::displayGallery, Qt::QueuedConnection);
     state = IDLE;
     galleryThread.start();
@@ -70,6 +71,25 @@ void MainWindow::button_pressed_callback()
 }
 
 void MainWindow::displayImage(unsigned char* image)
+{
+    QPixmap q;
+
+//    QString filename;
+//    filename += "temp.bmp";
+//    std::ofstream file (filename.toStdString(),std::ios::binary );
+//    file.write ( ( char* ) image, camera.getImageBufferSize() );
+//    lastTakenPicture.load(filename);
+    qDebug() << "displaying" << QDateTime::currentMSecsSinceEpoch();
+    uint len = getCamera().getImageBufferSize();
+    q.loadFromData(image,len,"BMP");
+    qDebug() << "loaded" << QDateTime::currentMSecsSinceEpoch();
+    instance->ui->cameraLabel->setPixmap(q);
+//    instance->ui->cameraLabel->setPixmap(QPixmap::fromImage(lastTakenPicture));
+    showCamera();
+}
+
+
+void MainWindow::saveImage(unsigned char* image)
 {
     qDebug() << "received image ready signal";
 

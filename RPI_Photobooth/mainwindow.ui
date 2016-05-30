@@ -18,16 +18,19 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="imageGalleryPage">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <widget class="QLabel" name="imageLabel">
         <property name="geometry">
          <rect>
-          <x>320</x>
-          <y>123</y>
-          <width>47</width>
-          <height>20</height>
+          <x>9</x>
+          <y>9</y>
+          <width>671</width>
+          <height>355</height>
          </rect>
         </property>
         <property name="text">
