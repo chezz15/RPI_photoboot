@@ -6,6 +6,7 @@
 #include "raspicam.h"
 #include "raspicam_still.h"
 #include <QMainWindow>
+#include <QProcess>
 
 typedef void function_t(void);
 
@@ -28,6 +29,7 @@ class MainWindow : public QMainWindow
 public:
     ~MainWindow();
     static MainWindow* getInstance();
+    raspicam::RaspiCam &getVideoCamera();
     raspicam::RaspiCam_Still &getCamera();
     state_t& getState();
     void setState(enum state_t new_state);
@@ -39,8 +41,9 @@ private:
     MainWindow(QWidget *parent = 0);
     static MainWindow* instance;
     Ui::MainWindow *ui;
-    //raspicam::RaspiCam camera;
+    raspicam::RaspiCam videocamera;
     raspicam::RaspiCam_Still camera;
+    QProcess process;
     void delay(int seconds);
     static void button_pressed_callback();
     static void motion_detected_callback();
@@ -54,7 +57,7 @@ protected:
     void keyPressEvent(QKeyEvent *event);
 
 private slots:
-    void displayImage(unsigned char*);
+    void displayVideo();
     void saveImage(unsigned char*);
     void displayGallery(QString);
 };
