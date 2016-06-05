@@ -4,16 +4,20 @@
 #include <QThread>
 #include <QString>
 #include <QProcess>
+#include <QTimer>
+
 class CameraThread : public QThread
 {
     Q_OBJECT
-public:
-    void acquireImage(int exit_code, QProcess::ExitStatus status);
 signals:
     void imageReady(unsigned char* image);
-    void acquiringVideo();
+    void countDownImage(int count);
 private:
+    QTimer *timer;
+    int  count;
     void run();
+private slots:
+    void timerHit();
 
 };
 

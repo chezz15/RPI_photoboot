@@ -60,6 +60,7 @@ private slots:
     void displayVideo();
     void saveImage(unsigned char*);
     void displayGallery(QString);
+    void displayCountDown(int);
 };
 
 #endif // MAINWINDOW_H

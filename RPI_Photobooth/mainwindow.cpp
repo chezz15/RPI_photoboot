@@ -37,10 +37,11 @@ MainWindow::MainWindow(QWidget *parent) :
     if ( !camera.open()) {
         qDebug() <<"Error opening camera";
     }
-    QObject::connect(&cameraThread, &CameraThread::acquiringVideo, this, &MainWindow::displayVideo, Qt::QueuedConnection);
+    //QObject::connect(&cameraThread, &CameraThread::acquiringVideo, this, &MainWindow::displayVideo, Qt::QueuedConnection);
     QObject::connect(&cameraThread, &CameraThread::imageReady, this, &MainWindow::saveImage, Qt::QueuedConnection);
+    QObject::connect(&cameraThread, &CameraThread::countDownImage, this, &MainWindow::displayCountDown, Qt::QueuedConnection);
     QObject::connect(&galleryThread, &GalleryThread::showGallery, this, &MainWindow::displayGallery, Qt::QueuedConnection);
-    QObject::connect(&this->process, &QProcess::finished, &cameraThread, &CameraThread::acquireImage, Qt::QueuedConnection);
+    //QObject::connect(&this->process, &QProcess::finished, &cameraThread, &CameraThread::acquireImage, Qt::QueuedConnection);
     state = IDLE;
     galleryThread.start();
 }
@@ -121,7 +122,7 @@ void MainWindow::saveImage(unsigned char* image)
     showCamera();
     delay(5); //TODO To be replace by PIR PIN down event
     state = IDLE;
-
+    cameraThread.terminate();
 }
 
 void MainWindow::motion_detected_callback()
@@ -168,9 +169,40 @@ void MainWindow::displayGallery(QString filepath)
     QImage currentPicture;
 
     currentPicture.load(filepath);
-    instance->ui->imageLabel->setPixmap(QPixmap::fromImage(currentPicture));
-    showImageGallery();
+    instance->ui->cameraLabel->setPixmap(QPixmap::fromImage(currentPicture));
+    showCamera();
 }
+
+void MainWindow::displayCountDown(int count)
+{
+    QImage  currentPicture;
+    QString filepath;
+
+    switch(count){
+    case 5:
+        filepath = "/home/pi/countdown/5.jpg";
+        break;
+    case 4:
+        filepath = "/home/pi/countdown/4.jpg";
+        break;
+    case 3:
+        filepath = "/home/pi/countdown/3.jpg";
+        break;
+    case 2:
+        filepath = "/home/pi/countdown/2.jpg";
+        break;
+    case 1:
+        filepath = "/home/pi/countdown/1.jpg";
+        break;
+    default:
+        qDebug() << "camera count wrong value";
+    }
+
+    currentPicture.load(filepath);
+    instance->ui->cameraLabel->setPixmap(QPixmap::fromImage(currentPicture));
+    showCamera();
+}
+
 
 void MainWindow::delay(int seconds)
 {
