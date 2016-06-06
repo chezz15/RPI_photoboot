@@ -14,6 +14,7 @@
 #include <QTime>
 #include <QDateTime>
 #include <QProcess>
+#include <QKeyEvent>
 
 MainWindow* MainWindow::instance = nullptr;
 
@@ -229,6 +230,6 @@ void MainWindow::showCamera()
 
 void MainWindow::keyPressEvent(QKeyEvent * event)
 {
-    Q_UNUSED(event);
-    SettingsDialog::getInstance()->exec();
+    if ((event->key() == Qt::Key_Enter) || (event->key() == Qt::Key_Return))
+        SettingsDialog::getInstance()->exec();
 }
