@@ -27,8 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
     button_init(&button_pressed_callback);
     PIR_init(&motion_detected_callback,&end_motion_callback);
 
-    camera.setWidth ( 1280 );
-    camera.setHeight ( 960 );
+    camera.setWidth ( 1920 );
+    camera.setHeight ( 1080 );
     camera.setISO(400);
     camera.setBrightness(50);
     camera.setAWB(raspicam::RASPICAM_AWB_AUTO);
