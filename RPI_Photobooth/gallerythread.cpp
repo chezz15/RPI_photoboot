@@ -29,10 +29,6 @@ void GalleryThread::timerHit()
 
     qDebug() << "gallery timeout elapsed..current state: " << MainWindow::getInstance()->getState();
 
-//    QString newTime= QDateTime::currentDateTime().toString("ddd MMMM d yy, hh:mm:ss");
-//    if(m_lastTime != newTime ){
-//        m_lastTime = newTime;
-
     if (MainWindow::getInstance()->getState() == CAPTURING)
         return;
 
@@ -41,9 +37,8 @@ void GalleryThread::timerHit()
         return;
     }
 
-    qDebug() << "starting gallery..";
-
     if (it_gallery->hasNext()){
+        qDebug() << "starting gallery..";
         qDebug() << "next image.." << it_gallery->next();
     }
     else{

@@ -27,8 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
     button_init(&button_pressed_callback);
     PIR_init(&motion_detected_callback,&end_motion_callback);
 
-    camera.setWidth ( 1920 );
-    camera.setHeight ( 1080 );
+    camera.setWidth(1920);
+    camera.setHeight(1080);
     camera.setISO(400);
     camera.setBrightness(50);
     camera.setAWB(raspicam::RASPICAM_AWB_AUTO);
@@ -38,11 +38,9 @@ MainWindow::MainWindow(QWidget *parent) :
     if ( !camera.open()) {
         qDebug() <<"Error opening camera";
     }
-    //QObject::connect(&cameraThread, &CameraThread::acquiringVideo, this, &MainWindow::displayVideo, Qt::QueuedConnection);
     QObject::connect(&cameraThread, &CameraThread::imageReady, this, &MainWindow::saveImage, Qt::QueuedConnection);
     QObject::connect(&cameraThread, &CameraThread::countDownImage, this, &MainWindow::displayCountDown, Qt::QueuedConnection);
     QObject::connect(&galleryThread, &GalleryThread::showGallery, this, &MainWindow::displayGallery, Qt::QueuedConnection);
-    //QObject::connect(&this->process, &QProcess::finished, &cameraThread, &CameraThread::acquireImage, Qt::QueuedConnection);
     state = IDLE;
     galleryThread.start();
 }
@@ -73,31 +71,6 @@ void MainWindow::button_pressed_callback()
     MainWindow::getInstance()->state = CAPTURING;
     MainWindow::getInstance()->cameraThread.start();
 }
-
-//void MainWindow::displayImage(unsigned char* image)
-void MainWindow::displayVideo()
-{
-//    QPixmap q;
-
-    showCamera();
-    process.start("raspivid", QStringList() << "-t 10000 -o instance->ui->cameraLabel");
-//    process.waitForFinished(10000);
-
-
-//    QString filename;
-//    filename += "temp.bmp";
-//    std::ofstream file (filename.toStdString(),std::ios::binary );
-//    file.write ( ( char* ) image, camera.getImageBufferSize() );
-//    lastTakenPicture.load(filename);
-//    qDebug() << "displaying" << QDateTime::currentMSecsSinceEpoch();
-//    uint len = getCamera().getImageBufferSize();
-//    q.loadFromData(image,len,"BMP");
-//    qDebug() << "loaded" << QDateTime::currentMSecsSinceEpoch();
-//    instance->ui->cameraLabel->setPixmap(q);
-//    instance->ui->cameraLabel->setPixmap(QPixmap::fromImage(lastTakenPicture));
-
-}
-
 
 void MainWindow::saveImage(unsigned char* image)
 {

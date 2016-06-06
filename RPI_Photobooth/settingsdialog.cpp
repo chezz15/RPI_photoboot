@@ -46,7 +46,9 @@ void SettingsDialog::updateCameraSettings()
     qDebug() << "Contrast: "    << instance->ui->contrastSlider->value();
     qDebug() << "ISO: "         << instance->ui->ISOCombo->currentText().toInt();
 
+    MainWindow::getInstance()->getCamera().release();
     MainWindow::getInstance()->getCamera().setBrightness(instance->ui->brightnessSlider->value());
     MainWindow::getInstance()->getCamera().setContrast(instance->ui->contrastSlider->value());
     MainWindow::getInstance()->getCamera().setISO(instance->ui->ISOCombo->currentText().toInt());
+    MainWindow::getInstance()->getCamera().open();
 }

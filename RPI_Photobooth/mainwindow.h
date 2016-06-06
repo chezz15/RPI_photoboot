@@ -57,7 +57,6 @@ protected:
     void keyPressEvent(QKeyEvent *event);
 
 private slots:
-    void displayVideo();
     void saveImage(unsigned char*);
     void displayGallery(QString);
     void displayCountDown(int);
